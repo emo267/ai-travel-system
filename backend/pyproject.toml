@@ -1,0 +1,43 @@
+[project]
+name = "travel-system-backend"
+version = "0.1.0"
+description = "旅行计划智能助手后端服务"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "fastapi>=0.141.1",
+    "uvicorn[standard]>=0.30.6",
+    "sqlalchemy>=2.0.54",
+    "pymysql>=1.1.1",
+    "pydantic>=2.9.2",
+    "pydantic-settings>=2.15.0",
+    "python-dotenv>=1.2.3",
+    "bcrypt>=4.2.0",
+    "pyjwt>=2.9.0",
+    "python-multipart>=0.0.12",
+    "celery>=5.4.0",
+    "redis>=5.0.8",
+    "cryptography>=43.0.3",
+    "langchain>=1.4.0",
+    "langchain-deepseek>=1.1.0",
+    "langgraph>=1.2.11",
+    "langchain-huggingface>=1.2.2",
+    "langchain-chroma>=1.1.0",
+    "langchain-text-splitters>=1.1.2",
+    "sentence-transformers>=3.3.1",
+    "torch>=2.2.0,<2.10",
+    "celery-types>=0.26.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.0",
+]
+
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
+
+# torch 仅推理用 CPU：阿里云 CPU 轮子目录为扁平列表，用 find-links 接入；
+# +cpu 本地版本号排序高于同版本 CUDA 轮，uv 会自动优先选中
+[tool.uv]
+find-links = ["https://mirrors.aliyun.com/pytorch-wheels/cpu/"]

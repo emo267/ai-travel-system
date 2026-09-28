@@ -1,0 +1,330 @@
+/* 全局设计体系：token + Element Plus 变量覆盖 + 深色模式 */
+
+:root {
+  --brand-600: #0d9488;
+  --brand-500: #14b8a6;
+  --brand-400: #34d399;
+  --brand-50: #f0fdfa;
+
+  --grad-brand: linear-gradient(135deg, #0d9488 0%, #14b8a6 48%, #34d399 100%);
+  --grad-brand-soft: linear-gradient(135deg, rgba(13, 148, 136, 0.12) 0%, rgba(52, 211, 153, 0.16) 100%);
+
+  --bg: #f6fbfa;
+  --bg-soft: #eef7f5;
+  --card: #ffffff;
+  --border-1: #e2eeec;
+  --border-2: #d3e5e2;
+
+  --text-1: #0f2e2b;
+  --text-2: #47615e;
+  --text-3: #86a09d;
+
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --info: #64748b;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(16, 42, 40, 0.06);
+  --shadow-md: 0 8px 24px -12px rgba(16, 42, 40, 0.18);
+  --shadow-lg: 0 18px 48px -20px rgba(16, 42, 40, 0.28);
+
+  --font-sans: system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', sans-serif;
+  --font-num: 'SF Mono', ui-monospace, Consolas, monospace;
+
+  --header-h: 62px;
+
+  /* Element Plus 的 hover / active / disabled 色由 primary 与白/黑的混合色派生，
+     只覆盖 --el-color-primary 会让 hover 态仍残留默认蓝，派生色必须一并给出 */
+  --el-color-primary: #0d9488;
+  --el-color-primary-light-3: #56b4ac;
+  --el-color-primary-light-5: #86cac4;
+  --el-color-primary-light-7: #b6dfdb;
+  --el-color-primary-light-8: #cfeae7;
+  --el-color-primary-light-9: #e7f4f3;
+  --el-color-primary-dark-2: #0a766d;
+
+  --el-color-success: #10b981;
+  --el-color-warning: #f59e0b;
+  --el-color-danger: #ef4444;
+  --el-color-info: #64748b;
+
+  --el-text-color-primary: #0f2e2b;
+  --el-text-color-regular: #47615e;
+  --el-text-color-secondary: #86a09d;
+  --el-border-color: #e2eeec;
+  --el-border-color-light: #e8f2f0;
+  --el-border-color-lighter: #eef7f5;
+
+  --el-font-family: var(--font-sans);
+  --el-border-radius-base: 10px;
+  --el-border-radius-small: 8px;
+  --el-box-shadow-light: var(--shadow-md);
+
+  color-scheme: light;
+}
+
+/* Element Plus 自带的 dark/css-vars.css 用 html.dark 定义变量，
+   与这里的 :root 是同层级选择器，靠引入顺序覆盖；因此深色下必须重新声明一遍主色 */
+html.dark {
+  --brand-50: #12302c;
+  --grad-brand-soft: linear-gradient(135deg, rgba(20, 184, 166, 0.18) 0%, rgba(52, 211, 153, 0.12) 100%);
+
+  --bg: #0e1615;
+  --bg-soft: #14201e;
+  --card: #16211f;
+  --border-1: #233331;
+  --border-2: #2d3f3d;
+
+  --text-1: #e7f2f0;
+  --text-2: #a3b8b5;
+  --text-3: #6f8683;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 18px 48px -20px rgba(0, 0, 0, 0.7);
+
+  --el-color-primary: #2dd4bf;
+  --el-color-primary-light-3: #26a897;
+  --el-color-primary-light-5: #1f8779;
+  --el-color-primary-light-7: #18655c;
+  --el-color-primary-light-8: #14544d;
+  --el-color-primary-light-9: #10302c;
+  --el-color-primary-dark-2: #57ddcc;
+
+  --el-text-color-primary: #e7f2f0;
+  --el-text-color-regular: #a3b8b5;
+  --el-text-color-secondary: #6f8683;
+  --el-border-color: #233331;
+  --el-border-color-light: #1d2b29;
+  --el-border-color-lighter: #1a2624;
+  --el-fill-color-blank: #16211f;
+  --el-bg-color: #16211f;
+  --el-bg-color-overlay: #1b2725;
+  --el-mask-color: rgba(6, 12, 11, 0.8);
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-2);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  color: var(--text-1);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+a {
+  color: var(--brand-600);
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-2);
+  border: 3px solid transparent;
+  background-clip: content-box;
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-3);
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- 布局工具类 ---------- */
+
+.page {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.page-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.page-title {
+  font-size: 24px;
+  letter-spacing: -0.3px;
+}
+
+.page-sub {
+  margin-top: 4px;
+  color: var(--text-3);
+  font-size: 13px;
+}
+
+.surface {
+  background: var(--card);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 14px;
+}
+
+.section-title::before {
+  content: '';
+  width: 3px;
+  height: 15px;
+  border-radius: var(--radius-pill);
+  background: var(--grad-brand);
+}
+
+.muted {
+  color: var(--text-3);
+}
+
+.num {
+  font-family: var(--font-num);
+  font-variant-numeric: tabular-nums;
+}
+
+.grad-text {
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-soft);
+  border: 1px solid var(--border-1);
+  color: var(--text-2);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.gap-8 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ---------- Element Plus 局部微调 ---------- */
+
+.el-card {
+  --el-card-border-radius: var(--radius-md);
+  --el-card-border-color: var(--border-1);
+  --el-card-padding: 20px;
+  box-shadow: var(--shadow-sm) !important;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.el-button {
+  font-weight: 500;
+}
+
+.el-menu {
+  border-bottom: none !important;
+  background: transparent;
+}
+
+.el-empty {
+  padding: 48px 0;
+}
+
+.el-timeline-item__timestamp {
+  color: var(--text-3);
+}
+
+.dark .el-card {
+  background: var(--card);
+}
+
+/* ---------- 路由切换过渡 ---------- */
+
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.fade-slide-enter-from {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 20px;
+  }
+
+  .page-head {
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,25 @@
+# 环境变量与密钥（.env.example 是模板，需要提交）
+.env
+.env.local
+deploy/env/*.env
+!deploy/env/*.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+
+# 运行期数据与缓存
+backend/chroma_data/
+*.sqlite3
+*.log
+
+# 前端
+frontend/node_modules/
+frontend/dist/

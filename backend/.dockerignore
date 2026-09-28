@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+.env
+.env.*
+.idea/
+.vscode/
+tests/
+performance/
+alembic/
+*.md
+.git
+.gitignore
+chroma_data
