@@ -23,3 +23,7 @@ backend/chroma_data/
 # 前端
 frontend/node_modules/
 frontend/dist/
+
+# 打包产物
+travel_system.zip
+*.zip
